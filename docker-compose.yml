@@ -1,0 +1,21 @@
+services:
+  web:
+    build: ./
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./:/relapseSITE/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env.dev
+  # db:
+  #   image: mariadb
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=mariadb
+  #     - MYSQL_DATABASE=mariadb
+  #     - MYSQL_USER=mariadb
+  #     - MYSQL_PASSWORD=mariadb
+  #   volumes:
+  #     - mariadb_data:/var/lib/mysql
+  #   ports:
+  #     - "3306:3306"
