@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-l*kr-8#8dmsd%mx6be2%_4t%%$akobf1bbgimj(kz)y_gaxnj7'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -75,25 +75,16 @@ WSGI_APPLICATION = 'recipes.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+	'default': {
+		'ENGINE': 'django.db.backends.mysql',
+		'NAME': os.environ.get('MYSQL_DATABASE'),
+		'USER': os.environ.get('MYSQL_USER'),
+		'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
+		'HOST':'db',
+		'PORT':'3306',
+	}
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'mariadb',
-#         'USER': 'mariadb',
-#         'PASSWORD': 'mariadb',
-#         'HOST': 'db',
-#         'PORT': 3306,
-#         'OPTIONS': {
-#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES', innodb_strict_mode=1",
-#         },
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -117,9 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = os.environ.get('LANGUAGE_CODE')
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = os.environ.get('TIME_ZONE')
 
 USE_I18N = True
 
