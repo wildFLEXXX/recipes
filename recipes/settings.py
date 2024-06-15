@@ -89,9 +89,6 @@ CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
         "LOCATION": "redis://cache:6379",
-        "OPTIONS": {
-            "PASSWORD": os.environ.get("REDIS_PASSWORD")
-        }
     }
 }
 
