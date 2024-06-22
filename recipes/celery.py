@@ -6,6 +6,7 @@ from celery import Celery
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'recipes.settings')
 
 app = Celery('recipes',
+             backend='redis://cache:6379',
              broker='amqp://' + os.environ.get('RABBITMQ_DEFAULT_USER') + ':' + os.environ.get('RABBITMQ_DEFAULT_PASS') + '@broker:5672',)
 
 # Using a string here means the worker doesn't have to serialize
